@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Till The Return of Lindsey</title>
+    
+    <link rel="stylesheet" href="flipclock.css">
+    <link rel="stylesheet" href="animate.min.css">
+    <style type="text/css">
+    .container{
+      padding-top: 15px;
+      
+      width: 620px;
+      height: 116px;
+      margin: 0 auto;
+    }
+    
+    #title {
+      color : #111111;
+      
+      -webkit-animation-iteration-count: 5;
+      
+      -moz-animation-iteration-count: 5;
+    }
+    </style>
+
+  </head>
+  <body style="background-color: #2ECC40">
+    <h1 class="animated bounce " id="title" style='text-align:center;font-family: sans-serif'>How Long Till Lindsey Comes Back to YYZ</h1>
+    <div class="container">
+      <div class="clock"></div>
+    </div>      
+      
+    
+  
+  <script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+  <script type="text/javascript" src="flipclock.min.js"></script>
+  <script type="text/javascript">
+    var today = new Date();
+    
+    
+    var diff = (new Date('Nov 20 2014 13:00:00 GMT-0400 (EDT)'))/1000 - (new Date())/1000;
+    var clock = $('.clock').FlipClock(diff, {
+		clockFace: 'DailyCounter',
+		countdown: true
+	});
+</script>
+  </body>
+</html>

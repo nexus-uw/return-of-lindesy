@@ -28,8 +28,7 @@
 		</style>
 	</head>
 	<body>
-		<div id="info"><a href="http://threejs.org" target="_blank">three.js</a> - css3d sandbox</div>
-
+		
 		<script src="three.min.js"></script>
 
 		<script src="TrackballControls.js"></script>
@@ -47,6 +46,7 @@
 
       var returnDate = new Date('Nov 20 2014');
 
+			var myDOMs = {};
 			init();
 			animate();
 
@@ -75,19 +75,20 @@
 
 scene = new THREE.Scene();
 scene2 = new THREE.Scene();
-				doWork(days + 'days');
-				doWork(hours + 'hours');
-				doWork(hours + 'minutes');
-				doWork(hours + 'seconds');
+				doWork(days, 'days');
+				doWork(hours, 'hours');
+				doWork(minutes, 'minutes');
+				doWork(seconds, 'seconds');
 
-				function doWork(text) {
+				function doWork(int, text) {
+
 					var element = document.createElement( 'div' );
-					element.innerHTML = text;
+					element.innerHTML = int + ' ' + text;
 					element.style.width = '100px';
 					element.style.height = '100px';
 					element.style.opacity = 0.5;
 					element.style.background = new THREE.Color( Math.random() * 0xffffff ).getStyle();
-
+					myDOMs[text] = element;
 					var object = new THREE.CSS3DObject( element );
 					object.position.x = Math.random() * 200 - 100;
 					object.position.y = Math.random() * 200 - 100;
@@ -134,10 +135,18 @@ scene2 = new THREE.Scene();
 
 			}
 
-		//	setInterval(function(){
-			//	createStuff();
-			//	animate();
-			//},1000);
+		setInterval(function(){
+			var now = new Date();
+			var ms = (returnDate - now);
+			var days = Math.floor(ms / 86400000);
+			var hours = Math.floor((ms % 86400000)/ 3600000);
+			var minutes = Math.floor((ms % 86400000 % 360000) / 60000);
+			var seconds = Math.floor((ms % 86400000 % 360000 % 60000)/ 1000);
+			myDOMs['days'].innerHTML = days + ' days';
+			myDOMs['minutes'].innerHTML = minutes + ' minutes';
+			myDOMs['hours'].innerHTML = hours + ' hours';
+ 			myDOMs['seconds'].innerHTML = seconds + ' seconds';
+		},1000);
 
 		</script>
 	</body>
